@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1haa5a5un6i5"]
+
+[ext_resource type="Script" path="res://scenes/UISoundPlayer.gd" id="1_4aryt"]
+[ext_resource type="AudioStream" uid="uid://dixqd7miiqpb8" path="res://assets/audio/RPG_Essentials_Free/10_UI_Menu_SFX/013_Confirm_03.wav" id="2_x6brk"]
+[ext_resource type="AudioStream" uid="uid://cxaqjgktb5otk" path="res://assets/audio/RPG_Essentials_Free/10_UI_Menu_SFX/092_Pause_04.wav" id="3_f1iyr"]
+[ext_resource type="AudioStream" uid="uid://dsvfq0lj420hw" path="res://assets/audio/RPG_Essentials_Free/10_UI_Menu_SFX/098_Unpause_04.wav" id="4_8dr5j"]
+[ext_resource type="AudioStream" uid="uid://b3tpvxa0ag2mp" path="res://assets/audio/RPG_Essentials_Free/10_UI_Menu_SFX/001_Hover_01.wav" id="5_ht2y1"]
+
+[node name="UiSoundPlayer" type="Node2D"]
+script = ExtResource("1_4aryt")
+
+[node name="buttonSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_x6brk")
+
+[node name="playerMenuOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f1iyr")
+
+[node name="playerMenuClose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8dr5j")
+
+[node name="buttonSoundHover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ht2y1")
