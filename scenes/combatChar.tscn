@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://blxkk56c3nrpo"]
+[gd_scene load_steps=17 format=3 uid="uid://blxkk56c3nrpo"]
 
 [ext_resource type="Texture2D" uid="uid://br1ry7xy0708k" path="res://assets/DoomcryptKit/Single-Characters/Ghoul1.png" id="1_bskif"]
 [ext_resource type="Script" path="res://scenes/combatChar.gd" id="1_utl57"]
 [ext_resource type="Texture2D" uid="uid://df67r87ktm06i" path="res://assets/Roret_Cursor/png/cursor_select_tap.png" id="2_t5pxt"]
 [ext_resource type="AudioStream" uid="uid://dc6uuu063xlwx" path="res://assets/audio/Minifantasy_Dungeon_SFX/11_human_damage_3.wav" id="4_1uvhl"]
+[ext_resource type="AudioStream" uid="uid://dm2p5x2dbuvuh" path="res://assets/audio/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" id="5_v2klt"]
+[ext_resource type="Texture2D" uid="uid://dklrath080mx5" path="res://assets/Roret_Cursor/png/cursor_dead.png" id="6_gpdvu"]
+[ext_resource type="AudioStream" uid="uid://doxjoa5jap8a1" path="res://assets/audio/RPG_Essentials_Free/8_Buffs_Heals_SFX/30_Revive_03.wav" id="6_q2ulb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q348"]
 bg_color = Color(0, 0, 0, 1)
@@ -13,6 +16,21 @@ bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mss0o"]
 bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="Animation" id="Animation_q3otl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_eogso"]
 resource_name = "hurt"
@@ -28,21 +46,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_q3otl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tjj2x"]
@@ -90,6 +93,8 @@ _data = {
 }
 
 [node name="combatChar" type="VBoxContainer"]
+offset_right = 41.0
+offset_bottom = 68.0
 script = ExtResource("1_utl57")
 
 [node name="HP" type="ProgressBar" parent="."]
@@ -99,6 +104,7 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_1q348")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ut0ua")
 value = 100.0
+rounded = true
 
 [node name="MP" type="ProgressBar" parent="."]
 layout_mode = 2
@@ -139,6 +145,17 @@ autoplay = "bounce"
 
 [node name="hurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_1uvhl")
+
+[node name="deathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v2klt")
+
+[node name="reviveSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_q2ulb")
+
+[node name="deathIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(21, 33)
+texture = ExtResource("6_gpdvu")
 
 [connection signal="gui_input" from="charImage" to="." method="_on_char_image_gui_input"]
 [connection signal="mouse_entered" from="charImage" to="." method="_on_char_image_mouse_entered"]

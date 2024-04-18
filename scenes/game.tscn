@@ -1,18 +1,22 @@
-[gd_scene load_steps=34 format=3 uid="uid://c17gtpcbeu618"]
+[gd_scene load_steps=58 format=3 uid="uid://c17gtpcbeu618"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_5bibh"]
 [ext_resource type="Texture2D" uid="uid://bgpgledg7cu4g" path="res://assets/DoomlandKit/Tiles-16x16.png" id="1_k3wtd"]
 [ext_resource type="Texture2D" uid="uid://dwvp6i74gi8r8" path="res://assets/DoomcryptKit/Tiles-16x16.png" id="2_r7d4k"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="2_t8h6x"]
+[ext_resource type="FontFile" uid="uid://bsv7kj6b0hahl" path="res://assets/fonts/kidnapped-at-old-times-free-font/KidnappedAtOldTimesFree-Polr.ttf" id="3_84wwq"]
 [ext_resource type="AudioStream" uid="uid://bupkrj8x1flro" path="res://assets/audio/Minifantasy_Dungeon_Music/Music/Goblins_Den_(Regular).wav" id="4_pwadg"]
 [ext_resource type="Texture2D" uid="uid://b2uk4c65kv430" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp1.png" id="5_4jrvr"]
 [ext_resource type="Texture2D" uid="uid://cps2v2e8cian0" path="res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png" id="6_6h1x6"]
 [ext_resource type="Texture2D" uid="uid://c3abdfgfvxe5t" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp2.png" id="6_hj7c4"]
 [ext_resource type="Theme" uid="uid://c5orrwpgn6kdd" path="res://theme_combat.tres" id="6_os456"]
+[ext_resource type="Texture2D" uid="uid://td47qpl7d4lf" path="res://assets/Spinning-Floppy-Disk.png" id="6_y7gc0"]
 [ext_resource type="Texture2D" uid="uid://dcbcf8u51b07n" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp3.png" id="7_7re3b"]
+[ext_resource type="AudioStream" uid="uid://b8ysicx5i7i4w" path="res://assets/audio/Minifantasy_Dungeon_Music/Music/Goblins_Dance_(Battle).wav" id="7_kyqs3"]
 [ext_resource type="PackedScene" uid="uid://blxkk56c3nrpo" path="res://scenes/combatChar.tscn" id="7_yniqi"]
 [ext_resource type="Texture2D" uid="uid://ba3ufgaj40i3e" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp4.png" id="8_hakr4"]
 [ext_resource type="AudioStream" uid="uid://dm2p5x2dbuvuh" path="res://assets/audio/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" id="10_uwxh0"]
+[ext_resource type="Script" path="res://scenes/Console.gd" id="13_ebxlh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gjrkw"]
 shader = ExtResource("2_t8h6x")
@@ -167,6 +171,140 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnetw"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs5mp"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaham"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hrso"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf6a5"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_073xe"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjoec"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq0yc"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsthb"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcuvm"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g1qb"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0rya"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lnxp"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p88j"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3bdb"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qwqt"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugiwi"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(240, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl2bf"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(256, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbk0i"]
+atlas = ExtResource("6_y7gc0")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4n8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs5mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaham")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hrso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf6a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_073xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjoec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq0yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsthb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcuvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g1qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0rya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lnxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p88j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3bdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qwqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugiwi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl2bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbk0i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhtq1"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -174,6 +312,18 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xngl2"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug6st"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="Animation_86vo0"]
 length = 0.001
@@ -284,8 +434,10 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="menuLayer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "danjkrpta"
+theme_override_fonts/font = ExtResource("3_84wwq")
+theme_override_font_sizes/font_size = 30
+text = "dANj
+kRyPTa"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="menuLayer/PanelContainer/VBoxContainer"]
@@ -298,21 +450,25 @@ size_flags_horizontal = 4
 [node name="Button" type="Button" parent="menuLayer/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 15
 text = "New Game"
 
 [node name="Button2" type="Button" parent="menuLayer/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 15
 text = "Load Game"
 
 [node name="Button3" type="Button" parent="menuLayer/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 15
 text = "Credits"
 
 [node name="Button4" type="Button" parent="menuLayer/PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
+theme_override_font_sizes/font_size = 15
 text = "Exit"
 
 [node name="Label2" type="Label" parent="menuLayer/PanelContainer/VBoxContainer"]
@@ -337,6 +493,9 @@ autoplay = "pan"
 [node name="backgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pwadg")
 
+[node name="battleMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_kyqs3")
+
 [node name="loadingLayer" type="CanvasLayer" parent="."]
 visible = false
 
@@ -360,11 +519,13 @@ offset_left = -0.5
 offset_right = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 fit_content = true
 
 [node name="gameLayer" type="Node2D" parent="."]
+visible = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="gameLayer"]
 
@@ -389,7 +550,15 @@ text = " dankcrypta | class"
 [node name="Label2" type="Label" parent="gameLayer/HUDLayer/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "HP: 100 | MP: 100"
+text = "HP: 100 | MP: 100 | EXP: 0/150 | GOLD: 34"
+
+[node name="saveIcon" type="AnimatedSprite2D" parent="gameLayer/HUDLayer/Panel"]
+visible = false
+position = Vector2(288, 36)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_m4n8w")
+autoplay = "default"
+frame_progress = 0.125923
 
 [node name="playerMenu" type="Panel" parent="gameLayer/HUDLayer"]
 anchors_preset = 15
@@ -411,6 +580,7 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 theme_override_icons/grabber = SubResource("PlaceholderTexture2D_mnum8")
 split_offset = 30
+dragger_visibility = 2
 
 [node name="ColorRect" type="ColorRect" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer"]
 layout_mode = 2
@@ -433,48 +603,75 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="enemyParty" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty"]
+[node name="enemyChatPanel" type="PanelContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty"]
+visible = false
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug6st")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel"]
+layout_mode = 2
+
+[node name="charSpeakingTexture" type="TextureRect" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_hj7c4")
+stretch_mode = 3
+
+[node name="charSpeakingRichText" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
+text = "
+Fuck you, imma clap you and your team!"
 
-[node name="char" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty" instance=ExtResource("7_yniqi")]
+[node name="roster" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="char" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty" instance=ExtResource("7_yniqi")]
+[node name="char2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char3" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty" instance=ExtResource("7_yniqi")]
+[node name="char3" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char4" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty" instance=ExtResource("7_yniqi")]
+[node name="char4" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
 [node name="playerParty" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="char" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty" instance=ExtResource("7_yniqi")]
+[node name="roster" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="char" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty" instance=ExtResource("7_yniqi")]
+[node name="char2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char3" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty" instance=ExtResource("7_yniqi")]
+[node name="char3" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="char4" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty" instance=ExtResource("7_yniqi")]
+[node name="char4" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/roster" instance=ExtResource("7_yniqi")]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty"]
+[node name="combatLog" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+scroll_active = false
+scroll_following = true
 
 [node name="ColorRect2" type="ColorRect" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer"]
 layout_mode = 2
@@ -489,10 +686,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+current_tab = 3
 drag_to_rearrange_enabled = true
 tab_focus_mode = 0
 
 [node name="Inventory" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HSplitContainer" type="HSplitContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory"]
@@ -565,11 +764,11 @@ text = "Item Description will go here."
 visible = false
 layout_mode = 2
 
-[node name="Settings" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+[node name="Game" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings"]
+[node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -577,57 +776,87 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
 text = "yadda yadda yadda some shit"
 
-[node name="VSeparator3" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VSeparator3" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 text = "Music"
 
-[node name="VSlider" type="VSlider" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer3"]
+[node name="VSlider" type="VSlider" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 value = 50.0
 
-[node name="VSeparator2" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Sound"
 
-[node name="VSlider" type="VSlider" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer"]
+[node name="VSlider" type="VSlider" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 value = 50.0
 
-[node name="VSeparator" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer2"]
+[node name="Button3" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Save Game"
+
+[node name="Button" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Exit to Menu"
 
-[node name="Button2" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer2"]
+[node name="Button2" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Exit Game"
+
+[node name="Combat" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+layout_mode = 2
+
+[node name="Console" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("13_ebxlh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="LineEdit" type="LineEdit" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "enter command"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="gameLayer/HUDLayer/playerMenu"]
 libraries = {
@@ -665,5 +894,7 @@ stream = ExtResource("10_uwxh0")
 [connection signal="pressed" from="menuLayer/PanelContainer/VBoxContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="tab_clicked" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="tab_hovered" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_hovered"]
-[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed_exit_menu"]
-[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Settings/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_3_pressed_save_game"]
+[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed_exit_menu"]
+[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_4_pressed"]
+[connection signal="text_submitted" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console/VBoxContainer/LineEdit" to="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console" method="_on_line_edit_text_submitted"]

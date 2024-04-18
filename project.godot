@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GlobalVars="*res://scenes/GlobalVars.gd"
 UiSoundPlayer="*res://scenes/UISoundPlayer.tscn"
 
 [display]
