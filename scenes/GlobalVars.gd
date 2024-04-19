@@ -89,3 +89,12 @@ func dir_contents(path):
 		#print("An error occurred when trying to access the path.")
 		pass
 	return files
+
+
+func generate_word(length):
+	var chars = 'abcdefghijklmnopqrstuvwxyz'
+	var word: String = ''
+	var n_char = len(chars)
+	for i in range(length):
+		word += chars[randi()% n_char]
+	return word

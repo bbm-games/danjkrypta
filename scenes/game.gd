@@ -26,7 +26,11 @@ func _ready():
 	$backgroundMusicPlayer.play()
 	$menuLayer.show()
 	
-	in_combat = false
+	startCombat() # for testing purposes
+	
+func startCombat():
+	_set_in_combat(true)
+	var engine = CombatEngine.new(self)
 	
 func combat_log_append(text_given: String):
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.newline()
@@ -37,7 +41,7 @@ func _on_button_4_pressed():
 	
 func _process(delta):
 	if $gameLayer.visible:
-		$gameLayer/CharacterBody2D.position = $gameLayer/CharacterBody2D.position.lerp(Vector2(player_data.posX, player_data.posY) * 16, delta*10)
+		#$gameLayer/CharacterBody2D.position = $gameLayer/CharacterBody2D.position.lerp(Vector2(player_data.posX, player_data.posY) * 16, delta*10)
 		if in_combat:
 			$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay.show()
 			$backgroundMusicPlayer.stop()
@@ -49,14 +53,14 @@ func _process(delta):
 				$backgroundMusicPlayer.play()
 			$battleMusicPlayer.stop()
 			$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay.hide()
-			if Input.is_action_pressed("move_up"):
+			'if Input.is_action_pressed("move_up"):
 				player_data.posY -= (1.0/20)
 			elif Input.is_action_pressed("move_down"):
 				player_data.posY += (1.0/20)
 			elif Input.is_action_pressed("move_left"):
 				player_data.posX -= (1.0/20)
 			elif Input.is_action_pressed("move_right"):
-				player_data.posX += (1.0/20)
+				player_data.posX += (1.0/20)'
 	if $loadingLayer.visible:
 		if $loadingLayer/Panel/RichTextLabel.visible_ratio >= 1:
 			text_done_showing_counter += delta
@@ -84,7 +88,14 @@ func _input(event):
 				$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_up')
 				player_menu_on_screen = true
 				UiSoundPlayer.get_node('playerMenuClose').play()
-		
+
+# for movement shit
+func _physics_process(delta):
+	if $gameLayer.visible and not in_combat:
+		var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		$gameLayer/CharacterBody2D.velocity = input_dir.normalized() * 50
+		$gameLayer/CharacterBody2D.move_and_collide($gameLayer/CharacterBody2D.velocity * delta)
+	
 func showLoadingLayer(text, next_layer):
 	hideAllLayers()
 	$loadingLayer/Panel/RichTextLabel.clear()
