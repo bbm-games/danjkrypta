@@ -26,11 +26,17 @@ func _ready():
 	$backgroundMusicPlayer.play()
 	$menuLayer.show()
 	
-	startCombat() # for testing purposes
-	
 func startCombat():
+	# show the player menu (which doubles as combat screen)
+	$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_up')
+	player_menu_on_screen = true
+	# set the boolean to be in combat (disable walking and playerMenu closing with ESC key and stuff)
 	_set_in_combat(true)
+	# make the combat tab on the menu clickable
 	var engine = CombatEngine.new(self)
+	
+func endCombat():
+	pass
 	
 func combat_log_append(text_given: String):
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.newline()
@@ -78,7 +84,7 @@ func _input(event):
 			text_done_showing_counter = 0
 			next_layer_after_loading.show()
 		
-	if $gameLayer.visible:
+	if $gameLayer.visible and not in_combat:
 		if event.is_action_pressed('menu'):
 			if player_menu_on_screen:
 				$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
@@ -107,14 +113,22 @@ func showLoadingLayer(text, next_layer):
 	self.tweens.append(tween)
 	tween.tween_property($loadingLayer/Panel/RichTextLabel, "visible_ratio", 1, 10)
 	
+# start a new game
 func _on_button_pressed():
 	showLoadingLayer(lorem, $gameLayer)
-	# create a new game
-	self.player_data = {'posX': 0.0, 'posY': 0.0}
+	
+	# create a new game with default player date
+	GlobalVars.load_default_player_data()
+	self.player_data = GlobalVars.player_data
+	
+	# TODO: RESET THE MAP AND WORLD STATE
+	
+	# TODO: automatically hop into combat
+	#startCombat() # for testing purposes
 
 func hideAllLayers():
-	$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
-	player_menu_on_screen = false
+	#$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
+	#player_menu_on_screen = false
 	for child in get_children():
 		if (child is CanvasLayer and child != $CRT) or child == $gameLayer:
 			child.hide()
@@ -126,9 +140,14 @@ func _on_tab_container_tab_clicked(_tab):
 	UiSoundPlayer.get_node('buttonSound').play()
 
 func _on_button_pressed_exit_menu():
+	# turn off combat if you exited to menu while in combat
+	_set_in_combat(false)
+	# hide the player menu
+	$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
+	player_menu_on_screen = false
 	hideAllLayers()
 	$menuLayer.show()
-
+	
 func _on_button_3_pressed():
 	var text = "I'd like to thank absolutely fucking no one. Jk. I'd like to thank my girlfriend Mar."
 	self.showLoadingLayer(text, $menuLayer)

@@ -340,7 +340,7 @@ script = ExtResource("1_5bibh")
 environment = SubResource("Environment_war6l")
 
 [node name="CRT" type="CanvasLayer" parent="."]
-layer = 2
+layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="CRT"]
 material = SubResource("ShaderMaterial_gjrkw")
@@ -350,6 +350,7 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="menuLayer" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="menuLayer"]
