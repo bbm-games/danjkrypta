@@ -11,11 +11,18 @@ var walk_down_held = false
 var walk_left_held = false
 var walk_right_held = false
 
+static var CONSOLE_TAB_INDEX = 4
+static var COMBAT_TAB_INDEX = 3
+
+var engine: CombatEngine
 var in_combat = false : set = _set_in_combat;
 func _set_in_combat(val):
 	in_combat = val
+	if in_combat:
+		$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer.set_tab_hidden(COMBAT_TAB_INDEX, false)
+	else:
+		$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer.set_tab_hidden(COMBAT_TAB_INDEX, true)
 
-		
 var next_layer_after_loading = null
 
 func _ready():
@@ -33,10 +40,13 @@ func startCombat():
 	# set the boolean to be in combat (disable walking and playerMenu closing with ESC key and stuff)
 	_set_in_combat(true)
 	# make the combat tab on the menu clickable
-	var engine = CombatEngine.new(self)
+	engine = CombatEngine.new(self)
 	
+	# start the game loop
+	engine.nextTurn()
+			
 func endCombat():
-	pass
+	_set_in_combat(false)
 	
 func combat_log_append(text_given: String):
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.newline()
@@ -74,6 +84,9 @@ func _process(delta):
 		text_done_showing_counter = 0
 		
 func _input(event):
+	# toggle the console
+	if event.is_action_pressed('console'):
+		$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer.set_tab_hidden(CONSOLE_TAB_INDEX, not $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer.is_tab_hidden(CONSOLE_TAB_INDEX))
 	if $loadingLayer.visible:
 		if Input.is_anything_pressed() and $loadingLayer/Panel/RichTextLabel.visible_ratio < 1:
 			for tween in tweens:
@@ -124,7 +137,7 @@ func _on_button_pressed():
 	# TODO: RESET THE MAP AND WORLD STATE
 	
 	# TODO: automatically hop into combat
-	#startCombat() # for testing purposes
+	startCombat() # for testing purposes
 
 func hideAllLayers():
 	#$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
@@ -168,3 +181,8 @@ func show_enemy_combat_chat_message(message_text: String, message_texture: Compr
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel/HBoxContainer/charSpeakingRichText.append_text('\n' + message_text + '\n')
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel/HBoxContainer/charSpeakingTexture.texture = message_texture
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel.show()
+
+
+func _on_submit_move_pressed():
+	if engine.playerTurn:
+		engine.nextTurn()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://blxkk56c3nrpo"]
+[gd_scene load_steps=82 format=3 uid="uid://blxkk56c3nrpo"]
 
 [ext_resource type="Texture2D" uid="uid://br1ry7xy0708k" path="res://assets/DoomcryptKit/Single-Characters/Ghoul1.png" id="1_bskif"]
 [ext_resource type="Script" path="res://scenes/combatChar.gd" id="1_utl57"]
@@ -346,9 +346,63 @@ _data = {
 "bounce": SubResource("Animation_e5ul6")
 }
 
+[sub_resource type="Animation" id="Animation_hb7ah"]
+resource_name = "pop_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_gbu8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7cf8j"]
+resource_name = "pop_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jl8mj"]
+_data = {
+"RESET": SubResource("Animation_gbu8g"),
+"pop_in": SubResource("Animation_7cf8j"),
+"pop_out": SubResource("Animation_hb7ah")
+}
+
 [node name="combatChar" type="VBoxContainer"]
 offset_right = 41.0
-offset_bottom = 68.0
+offset_bottom = 53.0
 theme_override_constants/separation = -1
 script = ExtResource("1_utl57")
 
@@ -438,6 +492,11 @@ stream = ExtResource("6_q2ulb")
 visible = false
 position = Vector2(21, 33)
 texture = ExtResource("6_gpdvu")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jl8mj")
+}
 
 [connection signal="gui_input" from="charImage" to="." method="_on_char_image_gui_input"]
 [connection signal="mouse_entered" from="charImage" to="." method="_on_char_image_mouse_entered"]

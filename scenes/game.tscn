@@ -605,7 +605,7 @@ layout_mode = 2
 [node name="combatLog" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 scroll_active = false
@@ -773,6 +773,18 @@ text = "Exit Game"
 [node name="Combat" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Combat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="submitMove" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Combat/HBoxContainer"]
+layout_mode = 2
+text = "Submit Move"
+
 [node name="Console" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
 visible = false
 layout_mode = 2
@@ -844,4 +856,5 @@ texture_scale = 1.4
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_3_pressed_save_game"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed_exit_menu"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Combat/HBoxContainer/submitMove" to="." method="_on_submit_move_pressed"]
 [connection signal="text_submitted" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console/VBoxContainer/LineEdit" to="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Console" method="_on_line_edit_text_submitted"]
