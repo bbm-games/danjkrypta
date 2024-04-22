@@ -30,24 +30,7 @@
          "move_desc":"A simple punch"
       }
    ],
-   "items":[
-      {
-         "item_id":"item001",
-         "item_name":"Healing Potion",
-         "item_desc":"Heals your health.",
-         "consumable":{
-            "currents_adjust":{
-               
-            }
-         },
-         "equippable":{
-            "equip_slot":"head",
-            "equipped":false,
-            "stats_adjust":{
-               
-            }
-         }
-      }
+   "bag":[
    ],
    "equipment":{
       "head":null,
@@ -86,24 +69,8 @@
          "move_desc":"A simple punch"
       }
    ],
-   "items":[
-      {
-         "item_id":"item001",
-         "item_name":"Healing Potion",
-         "item_desc":"Heals your health.",
-         "consumable":{
-            "currents_adjust":{
-               
-            }
-         },
-         "equippable":{
-            "equip_slot":"head",
-            "equipped":false,
-            "stats_adjust":{
-               
-            }
-         }
-      }
+   "bag":[
+    
    ],
    "equipment":{
       "head":null,

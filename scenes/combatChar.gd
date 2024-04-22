@@ -5,64 +5,7 @@ var rng = RandomNumberGenerator.new()
 var turn_active: bool = false
 
 # default char_data data structure
-var char_data = {
-	'char_name': GlobalVars.generate_word(7),
-	'char_texture': 'res://assets/DoomcryptKit/Single-Characters/' + GlobalVars.choose_random_from_list(GlobalVars.dir_contents("res://assets/DoomcryptKit/Single-Characters/")),
-	'stats':{
-		'max_hp': rng.randi_range(0, 200), 
-		'max_mp': rng.randi_range(0, 200),
-		'initiative': rng.randi_range(0, 10), # who goes first during turn based combat
-		
-		# How well you can resist damage to MP and HP
-		'magic_resist': rng.randf_range(0, 1), # how well you can withstand magic attacks
-		'physical_resist': rng.randf_range(0, 1), # how well you can withstand physical attacks
-		
-		# Status effect resistances (base determined by class)
-		'plagued_resist': rng.randf_range(0, 25), # how well you can withstand plague attacks
-		'burned_resist': rng.randf_range(0, 25),
-		'poisoned_resist': rng.randf_range(0, 25)
-	},
-	'currents':{
-		'hp': null,
-		'mp': null,
-		'plagued': rng.randf_range(0, .5), # for instant death mechanic
-		'burned': rng.randf_range(0, .5), # for damage over time mechanic
-		'poisoned': rng.randf_range(0, .5) # for skipping moves mechanic
-	},
-	'exp': 0.0,
-	'gold': rng.randi_range(0, 1000),
-	'is_dead': false,
-	'is_paralyzed': false,
-	'moves': [{
-		'move_id': 'move001',
-		'move_name': 'basic_attack',
-		'move_desc': 'A simple punch'
-	}],
-	'items': [{
-		'item_id': 'item001',
-		'item_name': 'Healing Potion',
-		'item_desc': 'Heals your health.',
-		'consumable': {
-			'currents_adjust':{
-				
-			}
-		},
-		'equippable':{
-			'equip_slot': 'head',
-			'equipped': false,
-			'stats_adjust':{
-				
-			}
-		}
-	}],
-	'equipment':{
-		'head': null,
-		'body': null,
-		'legs': null,
-		'weapon': null,
-		'talisman': null,
-	}
-}
+var char_data = GlobalVars.default_char_data.duplicate(true)
 
 # the two constructors for combatChars:
 func set_char_data_from_enemy(enemy_name: String):
