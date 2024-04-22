@@ -12,8 +12,7 @@ func set_char_data_from_enemy(enemy_name: String):
 		self.char_data = enemy_data.duplicate(true)	
 	if not char_data:
 		self.char_data = GlobalVars.get_randomized_char_data()
-	
-	
+
 func set_char_data_from_player():
 	self.char_data = GlobalVars.player_data
 

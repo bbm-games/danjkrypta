@@ -32,9 +32,8 @@ func _init(main_game_node_given, enemy_names = []):
 	var scene = preload("res://scenes/combatChar.tscn")
 	var instance = scene.instantiate()
 	instance.set_char_data_from_player()
-	print('gere')
 	playerPartyNode.add_child(instance)
-	print('here')
+
 	#TODO: add any other player party members
 	
 	# create a default enemy party if none are provided
@@ -72,15 +71,18 @@ func nextTurn():
 	
 	if current_player == playerPartyNode.get_children()[0]:
 		self.playerTurn = true
+		main_game_node.updatePlayerMenu()
 	# if the current player is dead or paralyzed skip them
 	elif current_player.char_data.is_dead or current_player.char_data.is_paralyzed:
 		self.playerTurn = false
 		await main_game_node.get_tree().create_timer(1).timeout
+		main_game_node.updatePlayerMenu()
 		main_game_node.engine.nextTurn()
 	else:
 		self.playerTurn = false
 		# DO SOME AI SHIT FOR THE NPCs HERE
 		await main_game_node.get_tree().create_timer(3).timeout
+		main_game_node.updatePlayerMenu()
 		main_game_node.engine.nextTurn()
 	
 		

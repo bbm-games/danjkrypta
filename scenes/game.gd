@@ -191,3 +191,16 @@ func _on_submit_move_pressed():
 func updatePlayerMenu():
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/Label.text = player_data.char_name
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/TextureRect.texture = load(player_data.char_texture)
+	var statRichText = $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/RichTextLabel
+	var statRichText2 = $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/RichTextLabel2
+	statRichText.clear()
+	statRichText2.clear()
+	statRichText.append_text('HP: ' + str(player_data.currents.hp) + '/' + str(player_data.stats.max_hp) + '\n')
+	statRichText.append_text('MP: ' + str(player_data.currents.mp) + '/' + str(player_data.stats.max_mp) + '\n')
+	statRichText.append_text('Init: '+ str(player_data.stats.initiative) + '\n')
+	
+	statRichText2.append_text('Magic Resist: ' + str(int(player_data.stats.magic_resist)) + '\n')
+	statRichText2.append_text('Physical Resist: ' + str(int(player_data.stats.physical_resist)) + '\n')
+	statRichText2.append_text('Plagued Resist: ' + str(int(player_data.stats.plagued_resist)) + '\n')
+	statRichText2.append_text('Burned Resist: ' + str(int(player_data.stats.burned_resist)) + '\n')
+	statRichText2.append_text('Poisoned Resist: ' + str(int(player_data.stats.poisoned_resist)) + '\n')

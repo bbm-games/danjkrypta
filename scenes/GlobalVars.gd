@@ -18,8 +18,8 @@ func get_randomized_char_data():
 			'initiative': rng.randi_range(0, 10), # who goes first during turn based combat
 			
 			# How well you can resist damage to MP and HP
-			'magic_resist': rng.randf_range(0, 1), # how well you can withstand magic attacks
-			'physical_resist': rng.randf_range(0, 1), # how well you can withstand physical attacks
+			'magic_resist': rng.randf_range(0, 25), # how well you can withstand magic attacks
+			'physical_resist': rng.randf_range(0, 25), # how well you can withstand physical attacks
 			
 			# Status effect resistances (base determined by class)
 			'plagued_resist': rng.randf_range(0, 25), # how well you can withstand plague attacks
