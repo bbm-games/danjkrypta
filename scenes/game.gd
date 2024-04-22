@@ -136,6 +136,8 @@ func _on_button_pressed():
 	
 	# TODO: RESET THE MAP AND WORLD STATE
 	
+	# update the player's menus
+	updatePlayerMenu()
 	# TODO: automatically hop into combat
 	startCombat() # for testing purposes
 
@@ -182,7 +184,10 @@ func show_enemy_combat_chat_message(message_text: String, message_texture: Compr
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel/HBoxContainer/charSpeakingTexture.texture = message_texture
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/enemyParty/enemyChatPanel.show()
 
-
 func _on_submit_move_pressed():
 	if engine.playerTurn:
 		engine.nextTurn()
+
+func updatePlayerMenu():
+	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/Label.text = player_data.char_name
+	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/TextureRect.texture = load(player_data.char_texture)

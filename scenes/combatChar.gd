@@ -3,15 +3,19 @@ extends VBoxContainer
 var main_game_node
 var rng = RandomNumberGenerator.new()
 var turn_active: bool = false
-
-# default char_data data structure
-var char_data = GlobalVars.default_char_data.duplicate(true)
+var char_data = GlobalVars.get_randomized_char_data()
 
 # the two constructors for combatChars:
 func set_char_data_from_enemy(enemy_name: String):
-	char_data = GlobalVars.returnDocInList(GlobalVars.lore_data.enemies, 'char_name', enemy_name).duplicate(true)
+	var enemy_data = GlobalVars.returnDocInList(GlobalVars.lore_data.enemies, 'char_name', enemy_name)
+	if enemy_data:
+		self.char_data = enemy_data.duplicate(true)	
+	if not char_data:
+		self.char_data = GlobalVars.get_randomized_char_data()
+	
+	
 func set_char_data_from_player():
-	char_data = GlobalVars.player_data
+	self.char_data = GlobalVars.player_data
 
 func _ready():
 	main_game_node = get_tree().get_root().get_node('Node2D')

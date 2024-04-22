@@ -32,8 +32,9 @@ func _init(main_game_node_given, enemy_names = []):
 	var scene = preload("res://scenes/combatChar.tscn")
 	var instance = scene.instantiate()
 	instance.set_char_data_from_player()
+	print('gere')
 	playerPartyNode.add_child(instance)
-	
+	print('here')
 	#TODO: add any other player party members
 	
 	# create a default enemy party if none are provided
@@ -41,6 +42,7 @@ func _init(main_game_node_given, enemy_names = []):
 		for i in range(MAX_PARTY_SIZE):
 			scene = preload("res://scenes/combatChar.tscn")
 			instance = scene.instantiate()
+			instance.set_char_data_from_enemy('default_enemy001')
 			enemyPartyNode.add_child(instance)
 	else:
 		for enemy_name in enemy_names:

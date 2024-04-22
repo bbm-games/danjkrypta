@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c17gtpcbeu618"]
+[gd_scene load_steps=57 format=3 uid="uid://c17gtpcbeu618"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_5bibh"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="2_t8h6x"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://blxkk56c3nrpo" path="res://scenes/combatChar.tscn" id="7_yniqi"]
 [ext_resource type="Texture2D" uid="uid://ba3ufgaj40i3e" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp4.png" id="8_hakr4"]
 [ext_resource type="AudioStream" uid="uid://dm2p5x2dbuvuh" path="res://assets/audio/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" id="10_uwxh0"]
+[ext_resource type="Texture2D" uid="uid://bevioh0kb2dnr" path="res://assets/DoomsphereCharset/Single PNGs/Outline/VampireNoble4.png" id="12_d8ce8"]
 [ext_resource type="Script" path="res://scenes/Console.gd" id="13_ebxlh"]
 [ext_resource type="Texture2D" uid="uid://b5dkdxl0uyvgp" path="res://assets/neutral.webp" id="18_rhmy3"]
 
@@ -624,15 +625,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-current_tab = 3
+current_tab = 1
 drag_to_rearrange_enabled = true
 tab_focus_mode = 0
 
-[node name="Inventory" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+[node name="Bag" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory"]
+[node name="HSplitContainer" type="HSplitContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -641,15 +642,15 @@ grow_horizontal = 2
 grow_vertical = 2
 split_offset = 120
 
-[node name="ScrollContainer" type="ScrollContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="itemMenuButton" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer/ScrollContainer/VBoxContainer"]
+[node name="itemMenuButton" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Health Potion"
 icon = ExtResource("6_6h1x6")
@@ -660,7 +661,7 @@ item_count = 1
 popup/item_0/text = "Ass"
 popup/item_0/id = 0
 
-[node name="itemMenuButton2" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer/ScrollContainer/VBoxContainer"]
+[node name="itemMenuButton2" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Health Potion"
 icon = ExtResource("6_6h1x6")
@@ -671,7 +672,7 @@ item_count = 1
 popup/item_0/text = "Ass"
 popup/item_0/id = 0
 
-[node name="itemMenuButton3" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer/ScrollContainer/VBoxContainer"]
+[node name="itemMenuButton3" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Health Potion"
 icon = ExtResource("6_6h1x6")
@@ -682,7 +683,7 @@ item_count = 1
 popup/item_0/text = "Ass"
 popup/item_0/id = 0
 
-[node name="itemMenuButton4" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer/ScrollContainer/VBoxContainer"]
+[node name="itemMenuButton4" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Health Potion"
 icon = ExtResource("6_6h1x6")
@@ -693,14 +694,33 @@ item_count = 1
 popup/item_0/text = "Ass"
 popup/item_0/id = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Inventory/HSplitContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Item Description will go here."
 
 [node name="Stats" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
-visible = false
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_d8ce8")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "player_name"
 
 [node name="Game" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
 visible = false
@@ -771,6 +791,7 @@ layout_mode = 2
 text = "Exit Game"
 
 [node name="Combat" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Combat"]
