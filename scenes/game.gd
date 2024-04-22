@@ -198,6 +198,8 @@ func updatePlayerMenu():
 	statRichText.append_text('HP: ' + str(player_data.currents.hp) + '/' + str(player_data.stats.max_hp) + '\n')
 	statRichText.append_text('MP: ' + str(player_data.currents.mp) + '/' + str(player_data.stats.max_mp) + '\n')
 	statRichText.append_text('Init: '+ str(player_data.stats.initiative) + '\n')
+	statRichText.append_text('Gold: '+ str(player_data.gold) + '\n')
+	statRichText.append_text('Exp: '+ str(player_data.exp) + '\n')
 	
 	statRichText2.append_text('Magic Resist: ' + str(int(player_data.stats.magic_resist)) + '\n')
 	statRichText2.append_text('Physical Resist: ' + str(int(player_data.stats.physical_resist)) + '\n')

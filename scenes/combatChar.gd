@@ -5,6 +5,9 @@ var rng = RandomNumberGenerator.new()
 var turn_active: bool = false
 var char_data = GlobalVars.get_randomized_char_data()
 
+var animation_frames = []
+var animation_tween: Tween
+
 # the two constructors for combatChars:
 func set_char_data_from_enemy(enemy_name: String):
 	var enemy_data = GlobalVars.returnDocInList(GlobalVars.lore_data.enemies, 'char_name', enemy_name)
@@ -19,6 +22,15 @@ func set_char_data_from_player():
 func _ready():
 	main_game_node = get_tree().get_root().get_node('Node2D')
 	
+	# set up the animation frames (if they exist) from the original charImage
+	var path = self.char_data.char_texture
+	path = path.erase(path.length() - 5, 5) # strip the 1.png
+	for i in range(1,5):
+		animation_frames.append(load(path + str(i) + '.png'))
+	animation_tween = self.create_tween()
+	animation_tween.tween_method(func animate(value: int): $charImage.texture = animation_frames[value], 0, 3, 0.50)
+	animation_tween.set_loops()
+	
 	# set up stuff for the combat char
 	$Name.text = char_data.char_name
 	$charImage.texture = load(char_data.char_texture)
@@ -32,6 +44,14 @@ func _ready():
 	$MP.max_value = char_data.stats.max_mp
 	$MP.value = char_data.currents.mp
 	
+func _physics_process(delta):
+	# turn on animation of the sprite if the turn is active
+	if turn_active:
+		if not animation_tween.is_running():
+			animation_tween.play()
+	else:
+		animation_tween.stop()
+
 func _process(_delta):
 	if char_data.currents.hp > 0:
 		$deathIcon.hide()
