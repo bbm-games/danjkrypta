@@ -221,6 +221,11 @@ func get_gold_on_death() -> int:
 func get_items_on_death() -> Array:
 	return char_data.items.duplicate(true)
 	
+# animate the health bar to transition colors
+func _on_hp_value_changed(value):
+	var percent = value / float($HP.max_value)
+	$HP["theme_override_styles/fill"].bg_color = Color(1,0,0).lerp(Color(0,1,0), percent)
+	
 # PURELY FOR TESTING PURPOSES
 func _on_char_image_gui_input(event):
 	if event is InputEventMouseButton and main_game_node.engine.playerTurn:

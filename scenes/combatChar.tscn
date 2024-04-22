@@ -68,8 +68,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q348"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut0ua"]
-bg_color = Color(1, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpot0"]
+resource_local_to_scene = true
+bg_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mss0o"]
 bg_color = Color(0, 0, 1, 1)
@@ -411,7 +412,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 theme_override_font_sizes/font_size = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_1q348")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ut0ua")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hpot0")
 value = 100.0
 rounded = true
 
@@ -498,6 +499,7 @@ libraries = {
 "": SubResource("AnimationLibrary_jl8mj")
 }
 
+[connection signal="value_changed" from="HP" to="." method="_on_hp_value_changed"]
 [connection signal="gui_input" from="charImage" to="." method="_on_char_image_gui_input"]
 [connection signal="mouse_entered" from="charImage" to="." method="_on_char_image_mouse_entered"]
 [connection signal="mouse_exited" from="charImage" to="." method="_on_char_image_mouse_exited"]
