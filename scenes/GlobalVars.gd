@@ -8,10 +8,14 @@ var is_loading = false
 
 var rng = RandomNumberGenerator.new()
 
+var char_pic_names = ["VampireNoble4.png", "AmazonChampion3.png", "Crocbear2.png", "Werewolf3.png", "Oxbear1.png", "Werewolf2.png", "Crocbear3.png", "DrakeHero4.png", "AmazonChampion2.png", "DarkElfSentry4.png", "Crocbear1.png", "Oxbear3.png", "Oxbear2.png", "Werewolf1.png", "AmazonChampion1.png", "DrakeHero3.png", "VampireNoble2.png", "DarkElfSentry1.png", "Crocbear4.png", "Werewolf4.png", "VampireNoble3.png", "AmazonChampion4.png", "DrakeHero2.png", "VampireNoble1.png", "DarkElfSentry2.png", "Oxbear4.png", "DarkElfSentry3.png", "DrakeHero1.png", "HalfHumanRanger3.png", "ElfWarden2.png", "DarkElfOverseer3.png", "HumanRogue3.png", "SkeletonLich1.png", "DarkElfInvader4.png", "SkeletonSword1.png", "HumanRogue2.png", "DarkElfOverseer2.png", "ElfWarden3.png", "HalfHumanRanger2.png", "OrcRaider4.png", "DrakeAdult4.png", "ElfWarden1.png", "SkeletonSword3.png", "SkeletonLich3.png", "HumanWarrior4.png", "SkeletonLich2.png", "SkeletonSword2.png", "HumanRogue1.png", "DarkElfOverseer1.png", "HalfHumanRanger1.png", "OrcRaider3.png", "DrakeAdult1.png", "ElfWarden4.png", "DarkElfInvader3.png", "HumanWarrior1.png", "DarkElfInvader2.png", "DarkElfOverseer4.png", "HumanRogue4.png", "HalfHumanRanger4.png", "OrcRaider2.png", "DrakeAdult2.png", "HumanWarrior2.png", "SkeletonLich4.png", "HumanWarrior3.png", "DarkElfInvader1.png", "SkeletonSword4.png", "DrakeAdult3.png", "OrcRaider1.png", "SkeletonSpear4.png", "HumanBarbarian2.png", "AmazonGuardian3.png", "Skeleton4.png", "Vampire1.png", "AmazonWarrior4.png", "SkeletonKnight4.png", "HumanBarbarian3.png", "AmazonGuardian2.png", "HumanPaladin1.png", "DrakeYouth4.png", "HumanPaladin3.png", "HumanBarbarian1.png", "Vampire2.png", "DrakeElder4.png", "HumanWarlock4.png", "ElfArcher4.png", "Vampire3.png", "Owlbear4.png", "AmazonGuardian1.png", "HumanPaladin2.png", "SkeletonSpear2.png", "DrakeYouth3.png", "HumanBarbarian4.png", "Skeleton2.png", "SkeletonKnight3.png", "AmazonWarrior2.png", "AmazonWarrior3.png", "DrakeElder1.png", "HumanWarlock1.png", "SkeletonKnight2.png", "ElfArcher1.png", "Skeleton3.png", "Owlbear1.png", "AmazonGuardian4.png", "DrakeYouth2.png", "SkeletonSpear3.png", "SkeletonSpear1.png", "Skeleton1.png", "Owlbear3.png", "ElfArcher3.png", "Vampire4.png", "HumanWarlock3.png", "AmazonWarrior1.png", "DrakeElder3.png", "DrakeElder2.png", "SkeletonKnight1.png", "HumanWarlock2.png", "ElfArcher2.png", "Owlbear2.png", "DrakeYouth1.png", "HumanPaladin4.png", "HumanPriest1.png", "AmazonWitch4.png", "WerewolfAlpha4.png", "OrcChopper1.png", "OrcBrute3.png", "OrcBrute2.png", "OrcGrunt1.png", "Ghoul1.png", "Ghoul3.png", "HumanPriest2.png", "OrcGrunt3.png", "OrcChopper2.png", "ElfKeeper4.png", "OrcBrute1.png", "HumanThief4.png", "Goblin4.png", "OrcChopper3.png", "OrcGrunt2.png", "ElfLord4.png", "DarkElfMarauder4.png", "HumanPriest3.png", "Ghoul2.png", "AmazonWitch2.png", "WerewolfAlpha2.png", "OrcBrute4.png", "ElfKeeper1.png", "Goblin1.png", "HumanThief1.png", "ElfLord1.png", "DarkElfMarauder1.png", "WerewolfAlpha3.png", "AmazonWitch3.png", "HumanPriest4.png", "AmazonWitch1.png", "WerewolfAlpha1.png", "DarkElfMarauder3.png", "ElfLord3.png", "HumanThief3.png", "Goblin3.png", "OrcChopper4.png", "ElfKeeper3.png", "ElfKeeper2.png", "Goblin2.png", "HumanThief2.png", "ElfLord2.png", "OrcGrunt4.png", "DarkElfMarauder2.png", "Ghoul4.png"]
+
 func get_randomized_char_data(): 
+
 	var randomized_char_data = {
 		'char_name': self.generate_word(7),
-		'char_texture': 'res://assets/DoomcryptKit/Single-Characters/' + self.choose_random_from_list(self.dir_contents("res://assets/DoomcryptKit/Single-Characters/")),
+		#'char_texture': 'res://assets/DoomsphereCharset/Single PNGs/Outline/' + self.choose_random_from_list(self.dir_contents("res://assets/DoomsphereCharset/Single PNGs/Outline/")),
+		'char_texture': 'res://assets/DoomsphereCharset/Single PNGs/Outline/' + self.choose_random_from_list(char_pic_names),
 		'stats':{
 			'max_hp': rng.randi_range(0, 200), 
 			'max_mp': rng.randi_range(0, 200),
@@ -184,7 +188,7 @@ func dir_contents(path):
 				#print("Found directory: " + file_name)
 				pass
 			else:
-				if file_name.find('.import') == -1:
+				if file_name.find('.import') == -1 and file_name.find('.png') != -1:
 					#print("Found file: " + file_name)
 					files.append(file_name)
 			file_name = dir.get_next()
