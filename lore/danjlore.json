@@ -27,6 +27,7 @@
 			"move_id": "move001",
 			"move_name": "basic_attack",
 			"move_desc": "A simple punch",
+      "mp_cost": 0,
 			"damage_obj": {
 				"hp":10,
 				"mp":0,
