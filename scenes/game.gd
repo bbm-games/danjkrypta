@@ -138,6 +138,8 @@ func _on_button_pressed():
 	
 	# update the player's menus
 	updateStatsTab()
+	updateBagTab()
+	
 	# TODO: automatically hop into combat
 	startCombat() # for testing purposes
 
@@ -206,3 +208,28 @@ func updateStatsTab():
 	statRichText2.append_text('Plagued Resist: ' + str(int(player_data.stats.plagued_resist)) + '\n')
 	statRichText2.append_text('Burned Resist: ' + str(int(player_data.stats.burned_resist)) + '\n')
 	statRichText2.append_text('Poisoned Resist: ' + str(int(player_data.stats.poisoned_resist)) + '\n')
+
+func updateBagTab():
+	for child in $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer.get_children():
+		child.queue_free()
+		
+	for item_id in player_data.bag:
+		var scene = preload("res://scenes/templateItemButton.tscn")
+		var instance = scene.instantiate()
+		instance.set_item_id(item_id)
+		$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer.add_child(instance)
+
+func discard_item(item_id):
+	if item_id in player_data.bag:
+		player_data.bag.erase(item_id)
+	updateBagTab()
+	
+func equip_item(item_id):
+	if item_id in player_data.bag:
+		player_data.bag.erase(item_id)
+	updateBagTab()
+	
+func consume_item(item_id):
+	if item_id in player_data.bag:
+		player_data.bag.erase(item_id)
+	updateBagTab()

@@ -54,56 +54,11 @@ func get_randomized_char_data():
 			},
 		}],
 		'bag': [
-			{
-				'item_id': 'item001',
-				'item_name': 'Healing Potion',
-				'item_desc': 'Heals your health.',
-				'consumable': {
-					'currents_adjust':{
-						'hp': 25,
-						'mp': 0,
-						'plagued': 0,
-						'burned': 0,
-						'poisoned': 0
-					}
-				}
-			},
-			{
-				'item_id': 'item002',
-				'item_name': 'Mana Potion',
-				'item_desc': 'Restores your mana.',
-				'consumable': {
-					'currents_adjust':{
-						'hp': 0,
-						'mp': 25,
-						'plagued': 0,
-						'burned': 0,
-						'poisoned': 0
-					}
-				}
-			}
-			
+			'item001',
+			'item002'
 		],
 		'equipment':{
-			'head': {
-				'item_id': 'item003',
-				'item_name': 'Trash Helmet',
-				'item_desc': 'A helmet worn by low level mobs.',
-				'equippable': {
-					'stats_adjust':{
-						'max_hp': 50, 
-						'max_mp': 0,
-						'initiative': 0,
-						
-						'magic_resist': 1,
-						'physical_resist': 1,
-						
-						'plagued_resist': 5,
-						'burned_resist': 5,
-						'poisoned_resist': 5
-					}
-				}
-			},
+			'head': 'item003',
 			'body': null,
 			'legs': null,
 			'weapon': null,

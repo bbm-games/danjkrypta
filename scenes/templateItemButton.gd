@@ -4,16 +4,16 @@ var item_data: Variant
 var main_game_node: Node
 var descriptionRichText: Node
 
-func set_item_id(item_id = 'item001'):
+func set_item_id(item_id):
 	self.item_data = GlobalVars.returnDocInList(GlobalVars.lore_data.items, 'item_id', item_id).duplicate(true)
-
+	
 func _ready():
-	self.set_item_id()
 	main_game_node = get_tree().get_root().get_node('Node2D')
 	descriptionRichText = main_game_node.get_node('gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/RichTextLabel')
-	self.text = self.item_data.item_name
-	if 'item_texture' in self.item_data:
-		self.icon = load(self.item_data.item_texture)
+	if item_data:
+		self.text = self.item_data.item_name
+		if 'item_texture' in self.item_data:
+			self.icon = load(self.item_data.item_texture)
 
 func _on_pressed():
 	descriptionRichText.clear()

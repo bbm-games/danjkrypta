@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c17gtpcbeu618"]
+[gd_scene load_steps=60 format=3 uid="uid://c17gtpcbeu618"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_5bibh"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="2_t8h6x"]
@@ -261,6 +261,8 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_37t41"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_22f77"]
 
 [sub_resource type="Animation" id="Animation_86vo0"]
 length = 0.001
@@ -649,12 +651,17 @@ size_flags_horizontal = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="template" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_17tiw")]
 layout_mode = 2
+size_flags_vertical = 2
 button_group = SubResource("ButtonGroup_37t41")
+
+[node name="template2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_17tiw")]
+layout_mode = 2
+size_flags_vertical = 2
+button_group = SubResource("ButtonGroup_22f77")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
@@ -876,6 +883,7 @@ texture_scale = 1.4
 [connection signal="pressed" from="menuLayer/PanelContainer/VBoxContainer/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="tab_clicked" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="tab_hovered" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_hovered"]
+[connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions/Discard" to="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions" method="_on_discard_pressed"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_3_pressed_save_game"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed_exit_menu"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_4_pressed"]
