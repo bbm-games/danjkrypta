@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dahyn06f3cv3j"]
+
+[ext_resource type="Texture2D" uid="uid://cps2v2e8cian0" path="res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png" id="1_e06pg"]
+[ext_resource type="Script" path="res://scenes/templateItemButton.gd" id="2_l3bkj"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_oovmq"]
+
+[node name="templateItemButton" type="Button"]
+offset_right = 44.0
+offset_bottom = 18.0
+focus_mode = 0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_oovmq")
+text = "template"
+icon = ExtResource("1_e06pg")
+expand_icon = true
+script = ExtResource("2_l3bkj")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

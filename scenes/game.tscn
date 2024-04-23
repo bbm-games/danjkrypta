@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c17gtpcbeu618"]
+[gd_scene load_steps=59 format=3 uid="uid://c17gtpcbeu618"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_5bibh"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="2_t8h6x"]
@@ -7,7 +7,6 @@
 [ext_resource type="TileSet" uid="uid://d1tl8gyi7qf2k" path="res://tilesets/main_tileset.tres" id="4_bh3kq"]
 [ext_resource type="AudioStream" uid="uid://bupkrj8x1flro" path="res://assets/audio/Minifantasy_Dungeon_Music/Music/Goblins_Den_(Regular).wav" id="4_pwadg"]
 [ext_resource type="Texture2D" uid="uid://b2uk4c65kv430" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp1.png" id="5_4jrvr"]
-[ext_resource type="Texture2D" uid="uid://cps2v2e8cian0" path="res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png" id="6_6h1x6"]
 [ext_resource type="Texture2D" uid="uid://c3abdfgfvxe5t" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp2.png" id="6_hj7c4"]
 [ext_resource type="Theme" uid="uid://c5orrwpgn6kdd" path="res://theme_combat.tres" id="6_os456"]
 [ext_resource type="Texture2D" uid="uid://td47qpl7d4lf" path="res://assets/Spinning-Floppy-Disk.png" id="6_y7gc0"]
@@ -16,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://blxkk56c3nrpo" path="res://scenes/combatChar.tscn" id="7_yniqi"]
 [ext_resource type="Texture2D" uid="uid://ba3ufgaj40i3e" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp4.png" id="8_hakr4"]
 [ext_resource type="AudioStream" uid="uid://dm2p5x2dbuvuh" path="res://assets/audio/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" id="10_uwxh0"]
+[ext_resource type="PackedScene" uid="uid://dahyn06f3cv3j" path="res://scenes/templateItemButton.tscn" id="11_17tiw"]
+[ext_resource type="Script" path="res://scenes/itemActionOptions.gd" id="12_6uw0e"]
 [ext_resource type="Texture2D" uid="uid://bevioh0kb2dnr" path="res://assets/DoomsphereCharset/Single PNGs/Outline/VampireNoble4.png" id="12_d8ce8"]
 [ext_resource type="Script" path="res://scenes/Console.gd" id="13_ebxlh"]
 [ext_resource type="Texture2D" uid="uid://b5dkdxl0uyvgp" path="res://assets/neutral.webp" id="18_rhmy3"]
@@ -258,6 +259,8 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_37t41"]
 
 [sub_resource type="Animation" id="Animation_86vo0"]
 length = 0.001
@@ -625,81 +628,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-current_tab = 1
 drag_to_rearrange_enabled = true
 tab_focus_mode = 0
 
 [node name="Bag" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
-visible = false
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag"]
+[node name="HSplitContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-split_offset = 120
 
 [node name="ScrollContainer" type="ScrollContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="itemMenuButton" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
+[node name="template" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_17tiw")]
 layout_mode = 2
-text = "Health Potion"
-icon = ExtResource("6_6h1x6")
-flat = false
-expand_icon = true
-switch_on_hover = true
-item_count = 1
-popup/item_0/text = "Ass"
-popup/item_0/id = 0
-
-[node name="itemMenuButton2" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Health Potion"
-icon = ExtResource("6_6h1x6")
-flat = false
-expand_icon = true
-switch_on_hover = true
-item_count = 1
-popup/item_0/text = "Ass"
-popup/item_0/id = 0
-
-[node name="itemMenuButton3" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Health Potion"
-icon = ExtResource("6_6h1x6")
-flat = false
-expand_icon = true
-switch_on_hover = true
-item_count = 1
-popup/item_0/text = "Ass"
-popup/item_0/id = 0
-
-[node name="itemMenuButton4" type="MenuButton" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Health Potion"
-icon = ExtResource("6_6h1x6")
-flat = false
-expand_icon = true
-switch_on_hover = true
-item_count = 1
-popup/item_0/text = "Ass"
-popup/item_0/id = 0
+button_group = SubResource("ButtonGroup_37t41")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 bbcode_enabled = true
-text = "Item Description will go here."
+
+[node name="itemActionOptions" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 0
+script = ExtResource("12_6uw0e")
+
+[node name="Consume" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions"]
+visible = false
+layout_mode = 2
+text = "Consume"
+
+[node name="Equip" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions"]
+visible = false
+layout_mode = 2
+text = "Equip"
+
+[node name="Discard" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions"]
+visible = false
+layout_mode = 2
+text = "Discard"
 
 [node name="Stats" type="TabBar" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats"]
@@ -710,15 +694,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -27.5
+offset_left = -155.0
 offset_top = -32.0
-offset_right = 27.5
+offset_right = 155.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="TextureRect" type="TextureRect" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer"]
 layout_mode = 2

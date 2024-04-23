@@ -4,7 +4,6 @@ var main_game_node
 var rng = RandomNumberGenerator.new()
 var turn_active: bool = false
 var char_data = GlobalVars.get_randomized_char_data()
-
 var animation_frames = []
 var animation_tween: Tween
 
@@ -44,7 +43,7 @@ func _ready():
 	$MP.max_value = char_data.stats.max_mp
 	$MP.value = char_data.currents.mp
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	# turn on animation of the sprite if the turn is active
 	if turn_active:
 		if not animation_tween.is_running():

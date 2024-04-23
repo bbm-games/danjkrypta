@@ -1,5 +1,6 @@
 #class definition:
 class_name CombatEngine
+
 # Inheritance:
 extends Node
 
@@ -71,18 +72,18 @@ func nextTurn():
 	
 	if current_player == playerPartyNode.get_children()[0]:
 		self.playerTurn = true
-		main_game_node.updatePlayerMenu()
+		main_game_node.updateStatsTab()
 	# if the current player is dead or paralyzed skip them
 	elif current_player.char_data.is_dead or current_player.char_data.is_paralyzed:
 		self.playerTurn = false
 		await main_game_node.get_tree().create_timer(1).timeout
-		main_game_node.updatePlayerMenu()
+		main_game_node.updateStatsTab()
 		main_game_node.engine.nextTurn()
 	else:
 		self.playerTurn = false
 		# DO SOME AI SHIT FOR THE NPCs HERE
 		await main_game_node.get_tree().create_timer(3).timeout
-		main_game_node.updatePlayerMenu()
+		main_game_node.updateStatsTab()
 		main_game_node.engine.nextTurn()
 	
 		

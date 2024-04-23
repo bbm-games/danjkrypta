@@ -111,7 +111,7 @@ func get_randomized_char_data():
 		}
 	}
 	return randomized_char_data
-
+	
 func _ready():
 	#get lore data
 	var file = FileAccess.open("res://lore/danjlore.json", FileAccess.READ)
@@ -205,3 +205,9 @@ func generate_word(length):
 	for i in range(length):
 		word += chars[randi()% n_char]
 	return word
+
+func num2signedstr(val):
+	if val > 0:
+		return '+' + str(val)
+	else:
+		return str(val)

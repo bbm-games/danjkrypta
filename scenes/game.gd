@@ -137,7 +137,7 @@ func _on_button_pressed():
 	# TODO: RESET THE MAP AND WORLD STATE
 	
 	# update the player's menus
-	updatePlayerMenu()
+	updateStatsTab()
 	# TODO: automatically hop into combat
 	startCombat() # for testing purposes
 
@@ -188,7 +188,7 @@ func _on_submit_move_pressed():
 	if engine.playerTurn:
 		engine.nextTurn()
 
-func updatePlayerMenu():
+func updateStatsTab():
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/Label.text = player_data.char_name
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/TextureRect.texture = load(player_data.char_texture)
 	var statRichText = $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/RichTextLabel

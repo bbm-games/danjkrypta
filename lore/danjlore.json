@@ -1,84 +1,129 @@
 {
-"character":{
-   "char_name":"char_name",
-   "char_texture":"res://assets/DoomcryptKit/Single-Characters/BladeVamp1.png",
-   "stats":{
-      "max_hp":100,
-      "max_mp":100,
-      "initiative":1,
-      "magic_resist":0.0,
-      "physical_resist":0.0,
-      "plagued_resist":0.0,
-      "burned_resist":0.0,
-      "poisoned_resist":0.0
-   },
-   "currents":{
-      "hp":100,
-      "mp":100,
-      "plagued":0.0,
-      "burned":0.0,
-      "poisoned":0.0
-   },
-   "exp":0.0,
-   "gold":0,
-   "is_dead":false,
-   "is_paralyzed": false,
-   "moves":[
-      {
-         "move_id":"move001",
-         "move_name":"basic_attack",
-         "move_desc":"A simple punch"
-      }
-   ],
-   "bag":[
-   ],
-   "equipment":{
-      "head":null,
-      "body":null,
-      "legs":null,
-      "weapon":null,
-      "talisman":null
-   }
-},
-"enemies":[{
-   "char_name":"basic_enemy",
-   "stats":{
-      "max_hp":100,
-      "max_mp":100,
-      "initiative":1,
-      "magic_resist":0.0,
-      "physical_resist":0.0,
-      "plagued_resist":0.0,
-      "burned_resist":0.0,
-      "poisoned_resist":0.0
-   },
-   "currents":{
-      "hp":100,
-      "mp":100,
-      "plagued":0.0,
-      "burned":0.0,
-      "poisoned":0.0
-   },
-   "exp":0.0,
-   "gold":0,
-   "is_dead":false,
-   "moves":[
-      {
-         "move_id":"move001",
-         "move_name":"basic_attack",
-         "move_desc":"A simple punch"
-      }
-   ],
-   "bag":[
-    
-   ],
-   "equipment":{
-      "head":null,
-      "body":null,
-      "legs":null,
-      "weapon":null,
-      "talisman":null
-   }
-}
-]
+	"character":{
+		"char_name": "default char",
+		"char_texture": "res://assets/DoomsphereCharset/Single PNGs/Outline/something",
+		"stats":{
+			"max_hp": 100, 
+			"max_mp": 100,
+			"initiative": 1,
+			"magic_resist": 4,
+			"physical_resist": 5,
+			"plagued_resist": 6,
+			"burned_resist": 6,
+			"poisoned_resist": 6
+		},
+		"currents":{
+			"hp": null,
+			"mp": null,
+			"plagued": 0,
+			"burned": 0,
+			"poisoned": 0
+		},
+		"exp": 0.0,
+		"gold": 150,
+		"is_dead": false,
+		"is_paralyzed": false,
+		"moves": [{
+			"move_id": "move001",
+			"move_name": "basic_attack",
+			"move_desc": "A simple punch",
+			"damage_obj": {
+				"hp":10,
+				"mp":0,
+				"plagued": 0,
+				"poisoned": 0,
+				"burned": 0
+			},
+		}],
+		"bag": [
+			{
+				"item_id": "item001",
+				"item_name": "Healing Potion",
+				"item_desc": "Heals your health.",
+				"consumable": {
+					"currents_adjust":{
+						"hp": 25,
+						"mp": 0,
+						"plagued": 0,
+						"burned": 0,
+						"poisoned": 0
+					}
+				}
+			},
+			{
+				"item_id": "item002",
+				"item_name": "Mana Potion",
+				"item_desc": "Restores your mana.",
+				"consumable": {
+					"currents_adjust":{
+						"hp": 0,
+						"mp": 25,
+						"plagued": 0,
+						"burned": 0,
+						"poisoned": 0
+					}
+				}
+			}
+			
+		],
+		"equipment":{
+			"head": {
+				"item_id": "item003",
+				"item_name": "Trash Helmet",
+				"item_desc": "A helmet worn by low level mobs.",
+				"equippable": {
+					"stats_adjust":{
+						"max_hp": 50, 
+						"max_mp": 0,
+						"initiative": 0,
+						"magic_resist": 1,
+						"physical_resist": 1,
+						"plagued_resist": 5,
+						"burned_resist": 5,
+						"poisoned_resist": 5
+					}
+				}
+			},
+			"body": null,
+			"legs": null,
+			"weapon": null,
+			"talisman": null,
+		}
+	},
+
+	"items": [
+		{
+				"item_id": "item001",
+				"item_name": "Healing Potion",
+				"item_desc": "Heals your health.",
+				"consumable": {
+					"currents_adjust":{
+						"hp": 25,
+						"mp": 0,
+						"plagued": 0,
+						"burned": 0,
+						"poisoned": 0
+					}
+				}
+			},
+			{
+				"item_id": "item002",
+				"item_name": "Mana Potion",
+				"item_desc": "Restores your mana.",
+				"consumable": {
+					"currents_adjust":{
+						"hp": 0,
+						"mp": 25,
+						"plagued": 0,
+						"burned": 0,
+						"poisoned": 0
+					}
+				}
+			}
+	],
+	"enemies": [{
+		"char_name":"clown"
+	}
+	]
+
 }
