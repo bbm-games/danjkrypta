@@ -146,7 +146,7 @@ func showLoadingLayer(text, next_layer):
 func _on_button_pressed():
 	showLoadingLayer(lorem, $gameLayer)
 	
-	# create a new game with default player date
+	# create a new game with default player data
 	GlobalVars.load_default_player_data()
 	self.player_data = GlobalVars.player_data
 	party.append(player_data)
@@ -167,7 +167,7 @@ func _on_button_pressed():
 	updateBagTab()
 	
 	# TODO: automatically hop into combat
-	#startCombat() # for testing purposes
+	startCombat() # for testing purposes
 
 func hideAllLayers():
 	#$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')

@@ -38,3 +38,8 @@ bbcode_enabled = true
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
