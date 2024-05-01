@@ -1,7 +1,8 @@
 extends Node2D
 
 var lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-var player_data = {'posX': 0, 'posY': 0}
+var player_data = {'posX': 0, 'posY': 0} # some default shit to initialize to
+var party = [] # contains the char data for party members
 var tweens = []
 var player_menu_on_screen = false
 var text_done_showing_counter = 0
@@ -10,6 +11,7 @@ var walk_up_held = false
 var walk_down_held = false
 var walk_left_held = false
 var walk_right_held = false
+var partyLeaderPositionBuffer = []
 
 static var CONSOLE_TAB_INDEX = 4
 static var COMBAT_TAB_INDEX = 3
@@ -57,7 +59,7 @@ func _on_button_4_pressed():
 	
 func _process(delta):
 	if $gameLayer.visible:
-		#$gameLayer/CharacterBody2D.position = $gameLayer/CharacterBody2D.position.lerp(Vector2(player_data.posX, player_data.posY) * 16, delta*10)
+		#$gameLayer/partyMembers/CharacterBody2D.position = $gameLayer/partyMembers/CharacterBody2D.position.lerp(Vector2(player_data.posX, player_data.posY) * 16, delta*10)
 		if in_combat:
 			$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay.show()
 			$backgroundMusicPlayer.stop()
@@ -111,10 +113,20 @@ func _input(event):
 # for movement shit
 func _physics_process(delta):
 	if $gameLayer.visible and not in_combat:
+		var partyLeader = $gameLayer/partyMembers/CharacterBody2D
 		var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		$gameLayer/CharacterBody2D.velocity = input_dir.normalized() * 50
-		$gameLayer/CharacterBody2D.move_and_collide($gameLayer/CharacterBody2D.velocity * delta)
-	
+		partyLeader.velocity = input_dir.normalized() * 50
+		partyLeader.move_and_collide(partyLeader.velocity * delta)
+		
+		# make any other party members follow:
+		if $gameLayer/partyMembers.get_children().size() > 1:
+			var i = 1
+			for otherpartymember in $gameLayer/partyMembers.get_children().slice(1):
+				otherpartymember.velocity = ($gameLayer/partyMembers.get_children()[i-1].position - otherpartymember.position - input_dir*10).normalized() * 50
+				otherpartymember.move_and_collide(otherpartymember.velocity * delta)
+				i += 1
+				if i == 4:
+					i = 1
 func showLoadingLayer(text, next_layer):
 	hideAllLayers()
 	$loadingLayer/Panel/RichTextLabel.clear()
@@ -133,15 +145,25 @@ func _on_button_pressed():
 	# create a new game with default player date
 	GlobalVars.load_default_player_data()
 	self.player_data = GlobalVars.player_data
+	party.append(player_data)
+	 
+	# add a stats tab for the player's character
+	var scene2 = preload("res://scenes/memberStats.tscn")
+	var instance2 = scene2.instantiate()
+	instance2.set_char_data(player_data)
+	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/TabContainer.add_child(instance2)
 	
 	# TODO: RESET THE MAP AND WORLD STATE
+	
+	# Add some players to the party
+	addPartyMember()
 	
 	# update the player's menus
 	updateStatsTab()
 	updateBagTab()
 	
 	# TODO: automatically hop into combat
-	startCombat() # for testing purposes
+	#startCombat() # for testing purposes
 
 func hideAllLayers():
 	#$gameLayer/HUDLayer/playerMenu/AnimationPlayer.play('slide_down')
@@ -191,24 +213,10 @@ func _on_submit_move_pressed():
 		engine.nextTurn()
 
 func updateStatsTab():
-	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/Label.text = player_data.char_name
-	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/VBoxContainer/TextureRect.texture = load(player_data.char_texture)
-	var statRichText = $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/RichTextLabel
-	var statRichText2 = $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/HBoxContainer/RichTextLabel2
-	statRichText.clear()
-	statRichText2.clear()
-	statRichText.append_text('HP: ' + str(player_data.currents.hp) + '/' + str(player_data.stats.max_hp) + '\n')
-	statRichText.append_text('MP: ' + str(player_data.currents.mp) + '/' + str(player_data.stats.max_mp) + '\n')
-	statRichText.append_text('Init: '+ str(player_data.stats.initiative) + '\n')
-	statRichText.append_text('Gold: '+ str(player_data.gold) + '\n')
-	statRichText.append_text('Exp: '+ str(player_data.exp) + '\n')
+	# cycle through tab nodes and update them
+	for tab in $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/TabContainer.get_children():
+		tab.updateMemberStats()
 	
-	statRichText2.append_text('Magic Resist: ' + str(int(player_data.stats.magic_resist)) + '\n')
-	statRichText2.append_text('Physical Resist: ' + str(int(player_data.stats.physical_resist)) + '\n')
-	statRichText2.append_text('Plagued Resist: ' + str(int(player_data.stats.plagued_resist)) + '\n')
-	statRichText2.append_text('Burned Resist: ' + str(int(player_data.stats.burned_resist)) + '\n')
-	statRichText2.append_text('Poisoned Resist: ' + str(int(player_data.stats.poisoned_resist)) + '\n')
-
 func updateBagTab():
 	for child in $gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer.get_children():
 		child.queue_free()
@@ -223,13 +231,39 @@ func discard_item(item_id):
 	if item_id in player_data.bag:
 		player_data.bag.erase(item_id)
 	updateBagTab()
-	
+
+# TODO: MAKE THIS WORK
+
 func equip_item(item_id):
 	if item_id in player_data.bag:
 		player_data.bag.erase(item_id)
 	updateBagTab()
 	
-func consume_item(item_id):
+# TODO: MAKE THIS WORK
+func consume_item(item_id, currents_adjust = null):
+	if not currents_adjust:
+		currents_adjust = GlobalVars.returnDocInList(GlobalVars.lore_data.items, 'item_id', item_id)
 	if item_id in player_data.bag:
 		player_data.bag.erase(item_id)
+		# apply item effects
+		player_data.currents = GlobalVars.addCurrents(player_data.currents, currents_adjust)
 	updateBagTab()
+	updateStatsTab()
+	
+	if in_combat:
+		engine.playerPartyNode.get_children()[0].animate_to_new_currents()
+		engine.nextTurn()
+
+# TODO: actually accept some arguments eventually
+func addPartyMember():
+	var scene = preload("res://scenes/partyMember.tscn")
+	var instance = scene.instantiate()
+	# TODO: make an actual constructor function
+	$gameLayer/partyMembers.add_child(instance)
+	self.party.append(instance.char_data)
+	
+	# add a stats tab to the player menu for the party member
+	var scene2 = preload("res://scenes/memberStats.tscn")
+	var instance2 = scene2.instantiate()
+	instance2.set_char_data(instance.char_data)
+	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/TabContainer.add_child(instance2)

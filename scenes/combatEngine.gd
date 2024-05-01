@@ -34,8 +34,13 @@ func _init(main_game_node_given, enemy_names = []):
 	var instance = scene.instantiate()
 	instance.set_char_data_from_player()
 	playerPartyNode.add_child(instance)
-
-	#TODO: add any other player party members
+	
+	# add any other party members that aren't players
+	for partyMemberCharData in main_game_node.party.slice(1):
+		scene = preload("res://scenes/combatChar.tscn")
+		instance = scene.instantiate()
+		instance.set_char_data(partyMemberCharData)
+		playerPartyNode.add_child(instance)
 	
 	# create a default enemy party if none are provided
 	if enemy_names.is_empty():
@@ -70,7 +75,7 @@ func nextTurn():
 	# make the current player pop out
 	current_player.set_turn_active(true)
 	
-	if current_player == playerPartyNode.get_children()[0]:
+	if current_player in playerPartyNode.get_children():
 		self.playerTurn = true
 		main_game_node.updateStatsTab()
 	# if the current player is dead or paralyzed skip them

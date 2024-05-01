@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5kmkqcjd3ian"]
+
+[ext_resource type="Script" path="res://scenes/partyMember.gd" id="1_4iswu"]
+[ext_resource type="Texture2D" uid="uid://b2uk4c65kv430" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp1.png" id="1_bdfm4"]
+[ext_resource type="Texture2D" uid="uid://c3abdfgfvxe5t" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp2.png" id="2_sqnfn"]
+[ext_resource type="Texture2D" uid="uid://dcbcf8u51b07n" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp3.png" id="3_ysbwt"]
+[ext_resource type="Texture2D" uid="uid://ba3ufgaj40i3e" path="res://assets/DoomcryptKit/Single-Characters/BladeVamp4.png" id="4_nl2d5"]
+[ext_resource type="AudioStream" uid="uid://dm2p5x2dbuvuh" path="res://assets/audio/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" id="5_eph1l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_som0y"]
+size = Vector2(20, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sg6re"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bdfm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sqnfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ysbwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nl2d5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="partyMember" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_4iswu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 5)
+shape = SubResource("RectangleShape2D_som0y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(8, -4)
+sprite_frames = SubResource("SpriteFrames_sg6re")
+autoplay = "default"
+frame_progress = 0.472036
+
+[node name="deathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_eph1l")

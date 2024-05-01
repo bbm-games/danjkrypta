@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://crgjcinyqu0ft"]
+
+[ext_resource type="Texture2D" uid="uid://bevioh0kb2dnr" path="res://assets/DoomsphereCharset/Single PNGs/Outline/VampireNoble4.png" id="1_dcsne"]
+[ext_resource type="Script" path="res://scenes/memberStats.gd" id="1_xynso"]
+
+[node name="memberStats" type="TabBar"]
+clip_contents = true
+script = ExtResource("1_xynso")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_dcsne")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "player_name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true

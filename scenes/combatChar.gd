@@ -18,6 +18,9 @@ func set_char_data_from_enemy(enemy_name: String):
 func set_char_data_from_player():
 	self.char_data = GlobalVars.player_data
 
+func set_char_data(char_data_given):
+	self.char_data = char_data_given
+
 func _ready():
 	main_game_node = get_tree().get_root().get_node('Node2D')
 	
@@ -120,7 +123,13 @@ func addMP(val):
 		char_data.currents.mp = char_data.stats.max_mp
 	var tween = get_tree().create_tween()
 	tween.tween_property($MP, "value", char_data.currents.mp, .25)
-		
+
+func animate_to_new_currents():
+	var tween = get_tree().create_tween()
+	tween.tween_property($HP, "value", char_data.currents.hp, .25)
+	tween = get_tree().create_tween()
+	tween.tween_property($MP, "value", char_data.currents.mp, .25)
+
 func _on_char_image_mouse_entered():
 	$focused.show()
 	#set_turn_active(true)
@@ -198,8 +207,8 @@ func _on_char_image_gui_input(event):
 				take_damage({
 					'hp':10,
 					'mp':5,
-					'plagued': 0.20,
-					'poisoned': 0.30,
+					'plagued': 0.02,
+					'poisoned': 0.05,
 					'burned': 0.30
 				})
 				main_game_node.show_enemy_combat_chat_message('STOP TOUCHING ME CUCK!', preload('res://assets/DoomlandKit/Single-Characters/SpearHero4.png'))

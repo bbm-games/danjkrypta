@@ -166,3 +166,8 @@ func num2signedstr(val):
 		return '+' + str(val)
 	else:
 		return str(val)
+
+func addCurrents(a,b):
+	for key in a:
+		a[key] += b[key]
+	return a
