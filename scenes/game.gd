@@ -31,8 +31,7 @@ func _ready():
 	# hide all shit
 	hideAllLayers()
 	
-	# Start title screen music
-	$backgroundMusicPlayer.play()
+	# show the menu screen first
 	$menuLayer.show()
 	
 func startCombat():
@@ -58,6 +57,11 @@ func _on_button_4_pressed():
 	get_tree().quit()
 	
 func _process(delta):
+	if $menuLayer.visible:
+		$battleMusicPlayer.stop()
+		if not $backgroundMusicPlayer.is_playing():
+			$backgroundMusicPlayer.play()
+			
 	if $gameLayer.visible:
 		#$gameLayer/partyMembers/CharacterBody2D.position = $gameLayer/partyMembers/CharacterBody2D.position.lerp(Vector2(player_data.posX, player_data.posY) * 16, delta*10)
 		if in_combat:
