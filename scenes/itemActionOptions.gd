@@ -32,6 +32,7 @@ func _on_discard_pressed():
 	main_game_node.discard_item(current_item_data.item_id)
 	main_game_node.get_node('gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/RichTextLabel').clear()
 
+# TODO: FIX THIS
 func _on_consume_pressed():
 	$Consume.hide()
 	$Equip.hide()
