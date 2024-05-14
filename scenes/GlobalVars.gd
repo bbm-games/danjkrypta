@@ -30,6 +30,7 @@ func get_randomized_char_data():
 			'burned_resist': rng.randf_range(0, 25),
 			'poisoned_resist': rng.randf_range(0, 25)
 		},
+		"old_currents": null,
 		'currents':{
 			'hp': null,
 			'mp': null,
@@ -167,7 +168,7 @@ func num2signedstr(val):
 	else:
 		return str(val)
 
-func addCurrents(a,b):
+func addJSONObjs(a,b):
 	for key in a:
 		a[key] += b[key]
 	return a

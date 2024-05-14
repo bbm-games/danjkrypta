@@ -12,6 +12,7 @@
 			"burned_resist": 6,
 			"poisoned_resist": 6
 		},
+		"old_currents": null,
 		"currents":{
 			"hp": null,
 			"mp": null,
@@ -23,19 +24,7 @@
 		"gold": 150,
 		"is_dead": false,
 		"is_paralyzed": false,
-		"moves": [{
-			"move_id": "move001",
-			"move_name": "basic_attack",
-			"move_desc": "A simple punch",
-      		"mp_cost": 0,
-			"damage_obj": {
-				"hp":10,
-				"mp":0,
-				"plagued": 0,
-				"poisoned": 0,
-				"burned": 0
-			},
-		}],
+		"moves": ["move001"],
 		"bag": [
 			"item001",
 			"item002"
@@ -101,6 +90,93 @@
 	"enemies": [{
 		"char_name":"clown"
 	}
-	]
+	],
+	"all_moves": [
+  {
+    "move_id": "move001",
+    "move_name": "Basic Attack",
+    "move_desc": "A simple punch",
+    "mp_cost": 0,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": 10,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.0,
+      "burned": 0.0
+    }
+  },
+  {
+    "move_id": "move002",
+    "move_name": "Fireball",
+    "move_desc": "A fiery projectile that scorches the enemy",
+    "mp_cost": 5,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": 25,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.0,
+      "burned": 0.5
+    }
+  },
+  {
+    "move_id": "move003",
+    "move_name": "Healing Breeze",
+    "move_desc": "A soothing wind that heals",
+    "mp_cost": 8,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": -20,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.0,
+      "burned": 0.0
+    }
+  },
+  {
+    "move_id": "move004",
+    "move_name": "Poison Dart",
+    "move_desc": "A toxic dart that poisons the enemy over time",
+    "mp_cost": 4,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": 5,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.7,
+      "burned": 0.0
+    }
+  },
+  {
+    "move_id": "move005",
+    "move_name": "Earthquake",
+    "move_desc": "Shakes the ground to damage all enemies",
+    "mp_cost": 7,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": 15,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.0,
+      "burned": 0.0
+    }
+  },
+  {
+    "move_id": "move006",
+    "move_name": "Thunder Strike",
+    "move_desc": "A bolt of lightning strikes the enemy",
+    "mp_cost": 10,
+    "icon_texture": "res://assets/DoomlandKit/Single-Items/WidePotion-outline1.png",
+    "damage_obj": {
+      "hp": 30,
+      "mp": 0,
+      "plagued": 0.0,
+      "poisoned": 0.0,
+      "burned": 0.8
+    }
+  }
+]
+
 
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c17gtpcbeu618"]
+[gd_scene load_steps=58 format=3 uid="uid://c17gtpcbeu618"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_5bibh"]
 [ext_resource type="Shader" path="res://scenes/crt.gdshader" id="2_t8h6x"]
@@ -259,9 +259,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_37t41"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_22f77"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_p7e1p"]
 
 [sub_resource type="Animation" id="Animation_86vo0"]
 length = 0.001
@@ -435,9 +433,11 @@ autoplay = "pan"
 
 [node name="backgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_pwadg")
+bus = &"music"
 
 [node name="battleMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_kyqs3")
+bus = &"music"
 
 [node name="loadingLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -657,12 +657,11 @@ theme_override_constants/separation = 0
 [node name="template" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_17tiw")]
 layout_mode = 2
 size_flags_vertical = 2
-button_group = SubResource("ButtonGroup_37t41")
 
 [node name="template2" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_17tiw")]
 layout_mode = 2
 size_flags_vertical = 2
-button_group = SubResource("ButtonGroup_22f77")
+button_group = SubResource("ButtonGroup_p7e1p")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer"]
 layout_mode = 2
@@ -679,11 +678,7 @@ script = ExtResource("12_6uw0e")
 visible = false
 layout_mode = 2
 text = "Consume"
-item_count = 2
-popup/item_0/text = "player1"
-popup/item_0/id = 0
-popup/item_1/text = "member2"
-popup/item_1/id = 1
+flat = false
 
 [node name="Equip" type="Button" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions"]
 visible = false

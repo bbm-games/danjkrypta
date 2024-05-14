@@ -11,14 +11,19 @@ script = ExtResource("1_4aryt")
 
 [node name="buttonSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_x6brk")
+bus = &"sounds"
 
 [node name="playerMenuOpen" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_f1iyr")
+bus = &"sounds"
 
 [node name="playerMenuClose" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_8dr5j")
+bus = &"sounds"
 
 [node name="buttonSoundHover" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ht2y1")
+bus = &"sounds"
 
 [node name="saveSound" type="AudioStreamPlayer2D" parent="."]
+bus = &"sounds"

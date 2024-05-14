@@ -24,6 +24,14 @@ func updateOptionButtons(item_data):
 	if 'equippable' in item_data:
 		$Equip.show()
 	$Discard.show()
+	
+	# make the consume button drop-down menu populated by party members
+	$Consume.get_popup().clear()
+	
+	for partyMember in main_game_node.party:
+		$Consume.get_popup().add_item(partyMember.char_name)
+
+	$Consume.get_popup().id_pressed.connect(_on_consume_id_pressed)
 
 func _on_discard_pressed():
 	$Consume.hide()
@@ -32,10 +40,9 @@ func _on_discard_pressed():
 	main_game_node.discard_item(current_item_data.item_id)
 	main_game_node.get_node('gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/RichTextLabel').clear()
 
-# TODO: FIX THIS
-func _on_consume_pressed():
+func _on_consume_id_pressed(id: int):
 	$Consume.hide()
 	$Equip.hide()
 	$Discard.hide()
-	main_game_node.consume_item(current_item_data.item_id, current_item_data.consumable.currents_adjust)
+	main_game_node.consume_item(id, current_item_data.item_id, current_item_data.consumable.currents_adjust)
 	main_game_node.get_node('gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/RichTextLabel').clear()

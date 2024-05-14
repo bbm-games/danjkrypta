@@ -29,6 +29,9 @@ func _init(main_game_node_given, enemy_names = []):
 	deleteChildNodes(playerPartyNode)
 	deleteChildNodes(enemyPartyNode)
 	
+	# clear existing combat combat log
+	main_game_node.combat_log_clear()
+	
 	# always first add the player to the playerParty
 	var scene = preload("res://scenes/combatChar.tscn")
 	var instance = scene.instantiate()

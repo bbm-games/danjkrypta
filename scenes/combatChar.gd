@@ -125,6 +125,10 @@ func addMP(val):
 	tween.tween_property($MP, "value", char_data.currents.mp, .25)
 
 func animate_to_new_currents():
+	if char_data.is_dead == true and char_data.currents.hp > 0:
+		char_data.is_dead = false
+		revive()
+		main_game_node.combat_log_append(self.char_data.char_name + ' has been revived.')
 	var tween = get_tree().create_tween()
 	tween.tween_property($HP, "value", char_data.currents.hp, .25)
 	tween = get_tree().create_tween()

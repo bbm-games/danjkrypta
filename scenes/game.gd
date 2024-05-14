@@ -49,6 +49,9 @@ func startCombat():
 func endCombat():
 	_set_in_combat(false)
 	
+func combat_log_clear():
+	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.clear()
+
 func combat_log_append(text_given: String):
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.newline()
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect/combatDisplay/VBoxContainer2/playerParty/combatLog.append_text(text_given)
@@ -236,26 +239,27 @@ func discard_item(item_id):
 		player_data.bag.erase(item_id)
 	updateBagTab()
 
-# TODO: MAKE THIS WORK
-
+# TODO: MAKE THIS WORK FOR EACH PARTY MEMBER
 func equip_item(item_id):
 	if item_id in player_data.bag:
 		player_data.bag.erase(item_id)
 	updateBagTab()
 	
-# TODO: MAKE THIS WORK
-func consume_item(item_id, currents_adjust = null):
+# TODO: MAKE THIS WORK FOR EACH PARTY MEMBER
+func consume_item(partyMember_index, item_id, currents_adjust = null):
+	var partyMemberData = party[partyMember_index]
 	if not currents_adjust:
 		currents_adjust = GlobalVars.returnDocInList(GlobalVars.lore_data.items, 'item_id', item_id)
 	if item_id in player_data.bag:
 		player_data.bag.erase(item_id)
 		# apply item effects
-		player_data.currents = GlobalVars.addCurrents(player_data.currents, currents_adjust)
+		partyMemberData.old_currents = partyMemberData.currents.duplicate(true)
+		partyMemberData.currents = GlobalVars.addJSONObjs(partyMemberData.currents, currents_adjust)
 	updateBagTab()
 	updateStatsTab()
 	
 	if in_combat:
-		engine.playerPartyNode.get_children()[0].animate_to_new_currents()
+		engine.playerPartyNode.get_children()[partyMember_index].animate_to_new_currents()
 		engine.nextTurn()
 
 # TODO: actually accept some arguments eventually
