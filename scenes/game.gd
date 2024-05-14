@@ -275,3 +275,11 @@ func addPartyMember():
 	var instance2 = scene2.instantiate()
 	instance2.set_char_data(instance.char_data)
 	$gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Stats/TabContainer.add_child(instance2)
+
+func _on_v_slider_value_changed(value):
+	var sfx_index = AudioServer.get_bus_index("music")
+	AudioServer.set_bus_volume_db(sfx_index, value)
+
+func _on_v_slider2_value_changed(value):
+	var sfx_index = AudioServer.get_bus_index("sounds")
+	AudioServer.set_bus_volume_db(sfx_index, value)

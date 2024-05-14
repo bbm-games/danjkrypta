@@ -166,7 +166,9 @@ func take_damage(damage_obj: Variant):
 		addStatusEffect('plagued', modified_damage_obj.plagued)
 		addStatusEffect('poisoned', modified_damage_obj.poisoned)
 		addStatusEffect('burned', modified_damage_obj.burned)
-
+		# update the stats for the players to reflect latest damage
+		main_game_node.updateStatsTab()
+		
 func addStatusEffect(status_name, value):
 	# status effect buildup is mitigated by resitances
 	var old_buildup = self.char_data.currents[status_name]

@@ -62,6 +62,9 @@ func _init(main_game_node_given, enemy_names = []):
 	# create a list of all players in the game
 	players = playerPartyNode.get_children() + enemyPartyNode.get_children()
 	
+	# update the stats for the players
+	main_game_node.updateStatsTab()
+	
 	# now set the turn order
 	setTurnOrder()
 

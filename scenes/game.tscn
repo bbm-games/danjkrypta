@@ -734,7 +734,8 @@ text = "Music"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-value = 50.0
+min_value = -25.0
+max_value = 25.0
 
 [node name="VSeparator2" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
@@ -750,7 +751,8 @@ text = "Sound"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-value = 50.0
+min_value = -25.0
+max_value = 25.0
 
 [node name="VSeparator" type="VSeparator" parent="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer"]
 layout_mode = 2
@@ -858,6 +860,8 @@ texture_scale = 1.4
 [connection signal="tab_clicked" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_clicked"]
 [connection signal="tab_hovered" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer" to="." method="_on_tab_container_tab_hovered"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions/Discard" to="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Bag/HSplitContainer/itemActionOptions" method="_on_discard_pressed"]
+[connection signal="value_changed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer3/VSlider" to="." method="_on_v_slider_value_changed"]
+[connection signal="value_changed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer/VSlider" to="." method="_on_v_slider2_value_changed"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button3" to="." method="_on_button_3_pressed_save_game"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button" to="." method="_on_button_pressed_exit_menu"]
 [connection signal="pressed" from="gameLayer/HUDLayer/playerMenu/VBoxContainer/ColorRect2/TabContainer/Game/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_4_pressed"]
